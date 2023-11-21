@@ -2,21 +2,26 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
+import { BiArrowBack } from 'react-icons/bi';
 import 'tailwindcss/tailwind.css';
 import { useRouter } from 'next/router'
 
 const UpdateAppointments = () => {
-  const [name, setName] = useState()
-  const [phone, setPhone] = useState()
-  const [email, setEmail] = useState()
-  const [date, setDate] = useState()
-  const [time, setTime] = useState()
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+  const [date, setDate] = useState("")
+  const [time, setTime] = useState("")
   const router = useRouter();
   const { id } = router.query;
 
+  const goBack = () => {
+    router.back();
+  };
+
   useEffect(() => {
     if (id) {
-        axios.get(`http://localhost:5100/updatePatient/${id}`)
+        axios.get(`http://localhost:5100/updateAppointment/${id}`)
             .then(result => {console.log(result)
               setName(result.data.name)
               setPhone(result.data.phone)
@@ -41,6 +46,7 @@ const UpdateAppointments = () => {
   return (
     <div className="flex h-screen bg-slate-300 justify-center items-center">
     <div className="w-50 bg-white rounded p-3">
+    <BiArrowBack onClick={goBack} className="text-black cursor-pointer text-[20px]" />
       <form onSubmit={Update}>
         <h1 className="font-bold text-[20px]">Update Appointment</h1>
         <div className="my-2 flex flex-col">

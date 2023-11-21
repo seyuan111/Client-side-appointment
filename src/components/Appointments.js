@@ -25,7 +25,7 @@ const Appointments = () => {
   return (
     <div className="flex h-screen bg-slate-300 justify-center items-center">
         <div className="w-50 bg-white rounded p-4">
-        <Link href="/CreateAppointments" className="mb-4 flex bg-green-500 text-white justify-center items-center"><IoIosAddCircleOutline className="mr-2" />Add Appointment</Link>
+        <Link href="/CreateAppointments" className="mb-4 flex bg-green-500 text-white justify-center items-center w-fit px-4 py-2 rounded"><IoIosAddCircleOutline />Add Appointment</Link>
             <table>
                 <thead>
                     <tr>
@@ -45,7 +45,7 @@ const Appointments = () => {
                             <td>{people.date}</td>
                             <td>{people.time}</td>
                             <td>
-                                <Link pathname={`/update/${people._id}`} href="/UpdateAppointments" className="bg-blue-600 text-white ml-4 px-[8px] py-[4px] rounded">Edit</Link>
+                                <Link href={{pathname: `/UpdateAppointments`, query: {people: people._id}}} className="bg-blue-600 text-white ml-4 px-[8px] py-[4px] rounded">Edit</Link>
                                 <button onClick={(e) => handleDelete(people._id)} className="bg-red-600 text-white mx-4 px-[8px] py-[4px] rounded">Delete</button>
                             </td>
                         </tr>

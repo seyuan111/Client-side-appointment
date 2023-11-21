@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import 'tailwindcss/tailwind.css';
+import { BiArrowBack } from 'react-icons/bi';
 import { useRouter } from 'next/router'
 
 const CreateAppointments = () => {
@@ -13,6 +14,10 @@ const CreateAppointments = () => {
   const [time, setTime] = useState()
 
   const router = useRouter();
+
+  const goBack = () => {
+    router.back();
+  };
 
   const Submit = (e) => {
     e.preventDefault()
@@ -28,6 +33,7 @@ const CreateAppointments = () => {
   return (
     <div className="flex h-screen bg-slate-300 justify-center items-center">
       <div className="w-50 bg-white rounded p-3">
+      <BiArrowBack onClick={goBack} className="text-black cursor-pointer text-[20px]" />
         <form onSubmit={Submit}>
           <h1 className="font-bold text-[20px]">Create Appointment</h1>
           <div className="my-2 flex flex-col">
